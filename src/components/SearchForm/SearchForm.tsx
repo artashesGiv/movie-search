@@ -18,7 +18,7 @@ export const SearchForm: React.FC<SearchProps> = ({search}) => {
    return (
       <div className={style.form}>
          <input type="text" value={value} onChange={(e) => setValue(e.currentTarget.value)}
-                onKeyPress={onKeyPressInput}/>
+                onKeyPress={onKeyPressInput} placeholder={'Фильмы, сериалы'}/>
          <button onClick={sendKeyWords}>Поиск</button>
       </div>
    )
