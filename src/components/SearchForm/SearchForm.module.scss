@@ -1,0 +1,27 @@
+.form {
+   display: flex;
+   justify-content: center;
+   width: 100%;
+   margin-top: 50px;
+
+
+   input {
+      width: 35%;
+      margin-right: 50px;
+      height: 35px;
+      border-radius: 5px;
+      outline: none;
+      border: 1.5px solid grey;
+      padding: 5px;
+   }
+
+   button {
+      width: 150px;
+      border: none;
+      background-color: gray;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 18px;
+      color: white;
+   }
+}
