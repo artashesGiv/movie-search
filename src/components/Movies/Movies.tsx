@@ -7,10 +7,10 @@ export const MovieList: React.FC<{ movies: movie[] }> = ({movies}) => {
       <div className={style.movieList}>
          {
             movies.map(movie => {
-               return <>
-                  <MovieCard key={movie.filmId} movie={movie}/>
+               return <div key={movie.filmId}>
+                  <MovieCard movie={movie}/>
                   <hr/>
-               </>
+               </div>
             })
          }
       </div>

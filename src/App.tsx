@@ -12,7 +12,6 @@ export const App = () => {
 
    const searchByKeyWords = (key: string) => {
       movieAPI.getMovieByKeyWords(key).then(data => {
-         console.log(data.films)
          setMovies(data.films)
       })
    }
