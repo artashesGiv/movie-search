@@ -18,7 +18,7 @@ export const movieAPI = {
       return instance.get(`/v2.2/films/${movieID}/images`)
    },
 
-   getMovieByKeyWords(key: string) {
+   getMoviesByKeyWords(key: string) {
       return instance.get(`/v2.1/films/search-by-keyword?keyword=${key}&page=1`)
          .then(res => res.data)
    },

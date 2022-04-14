@@ -11,7 +11,7 @@ export const App = () => {
    const [movies, setMovies] = useState<movie[]>([])
 
    const searchByKeyWords = (key: string) => {
-      movieAPI.getMovieByKeyWords(key).then(data => {
+      movieAPI.getMoviesByKeyWords(key).then(data => {
          setMovies(data.films)
       })
    }
