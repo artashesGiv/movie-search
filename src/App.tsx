@@ -1,25 +1,21 @@
-import React, {useState} from 'react'
+import React from 'react'
 import './App.css'
-import {SearchForm} from './components/SearchForm/SearchForm'
-import {movieAPI} from './api/movieAPI'
-import {movie} from './types/types'
-import {MovieList} from './components/Movies/Movies'
+import {SearchPage} from './components/SearchPage/SearchPage'
+import {Navigate, Route, Routes} from 'react-router-dom'
+import {MoviePage} from './components/ItemPages/MoviePage'
 
 
-export const App = () => {
-
-   const [movies, setMovies] = useState<movie[]>([])
-
-   const searchByKeyWords = (key: string) => {
-      movieAPI.getMoviesByKeyWords(key).then(data => {
-         setMovies(data.films)
-      })
-   }
-
+export const App: React.FC = () => {
    return (
-      <div className="App">
-         <SearchForm search={searchByKeyWords}/>
-         <MovieList movies={movies}/>
+      <div className={'container'}>
+         <Routes>
+            <Route path={'/'} element={<Navigate replace to={'search'}/>}/>
+            <Route path={'/search'} element={<SearchPage/>}/>
+            <Route path={'/film/:movieId'} element={<MoviePage/>}/>
+         </Routes>
       </div>
    )
 }
+
+
+

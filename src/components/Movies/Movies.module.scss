@@ -1,21 +1,27 @@
-.movieList {
-   width: 60%;
-   margin: 100px auto 0;
-   border-left: 1px solid gray;
-   padding-left: 30px;
+@import 'src/style/variables';
 
-   img {
-      width: 150px;
-      border: 3px solid gray;
-   }
+.movieList {
+   border-left: 1px solid $main-color;
+   padding-left: 30px;
+   margin-top: 50px;
 }
 
 .movieCard {
    display: flex;
-   margin-bottom: 25px;
+   margin-top: 25px;
    padding: 20px;
    height: max-content;
-   border-bottom: 1px solid grey;
+   border-bottom: 1px solid $main-color;
+
+   &:hover {
+      background-color: #e5e5e5;
+      cursor: pointer;
+   }
+
+   img {
+      width: 150px;
+      border: 2px solid gray;
+   }
 
    .description {
       display: flex;
@@ -35,5 +41,7 @@
       .descriptionText {
          font-size: 15px;
       }
+
+
    }
 }

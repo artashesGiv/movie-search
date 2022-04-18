@@ -10,16 +10,22 @@ const instance = axios.create({
 
 export const movieAPI = {
    getMovieByID(movieID: string) {
-      return instance.get(`/v2.2/films/${movieID}`)
+      return instance.get(`v2.2/films/${movieID}`)
          .then(res => res.data)
    },
 
-   getMoviePostersByID(movieID: string) {
-      return instance.get(`/v2.2/films/${movieID}/images`)
-   },
-
-   getMoviesByKeyWords(key: string) {
-      return instance.get(`/v2.1/films/search-by-keyword?keyword=${key}&page=1`)
+   getMovieVideoByID(movieID: number) {
+      return instance.get(`v2.2/films/${movieID.toString()}/video`)
          .then(res => res.data)
    },
+
+   getMoviesByKeyWords(key: string, pageNumber: number) {
+      return instance.get(`v2.1/films/search-by-keyword?keyword=${key}&page=${pageNumber.toString()}`)
+         .then(res => res.data)
+   },
+
+   getStaffByMovieID(movieID: string) {
+      return instance.get(`v1/staff?filmId=${movieID}`)
+         .then(res => res.data)
+   }
 }

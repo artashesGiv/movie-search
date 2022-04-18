@@ -1,0 +1,63 @@
+.itemPage {
+   display: flex;
+   width: 100%;
+   height: 500px;
+
+   .poster,
+   .about,
+   .information {
+      padding: 25px;
+   }
+
+   .poster {
+      width: 28%;
+
+      img {
+         width: 100%;
+         border-radius: 3px;
+      }
+   }
+
+   .about {
+      width: 50%;
+
+      h1 {
+         font-size: 40px;
+      }
+
+      &Table {
+         margin-top: 50px;
+
+         table {
+            width: 100%;
+            font-size: 13px;
+            margin-top: 20px;
+
+            tr {
+               height: 30px;
+
+               td:first-child {
+                  color: gray;
+               }
+            }
+         }
+      }
+   }
+
+   .information {
+      display: flex;
+      flex-direction: column;
+      width: 22%;
+
+      .rating {
+         font-size: 40px;
+         color: #3bb33b;
+         font-weight: bold;
+      }
+
+      .totalRatingCount {
+         color: gray;
+         font-size: 14px;
+      }
+   }
+}

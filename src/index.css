@@ -6,4 +6,10 @@
 
 body {
     font-family: 'Montserrat', sans-serif;
+    background-color: aliceblue;
+}
+
+a {
+    text-decoration: none;
+    color: #000;
 }
