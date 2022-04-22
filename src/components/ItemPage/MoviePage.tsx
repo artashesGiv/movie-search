@@ -6,8 +6,8 @@ import {fetchMovieByID} from '../../store/reducers/movieViewReducer/actionCreato
 import {person} from '../../types/types'
 import {CollapseText} from '../common/СutText/CollapseText'
 import {useParams} from 'react-router-dom'
-
-
+import {AgeRating} from '../common/AgeRating/AgeRating'
+import {MovieRating} from '../common/MovieRating/MovieRating'
 
 export const MoviePage: React.FC = React.memo(() => {
 
@@ -31,24 +31,26 @@ export const MoviePage: React.FC = React.memo(() => {
       staff,
    }
 
-   // @ts-ignore
-   const ratingAgeForRender = movie.ratingAgeLimits && [...movie.ratingAgeLimits].map(i => isFinite(i) ? i : '').join('') + '+'
-
    return (
-      <div className={style.itemPage}>
-         <div className={style.poster}>
-            <img src={movie.posterUrl} alt="poster"/>
+      <>
+         <div className={style.itemPage}>
+            <div className={style.poster}>
+               <img src={movie.posterUrl} alt="poster"/>
+            </div>
+            <div className={style.about}>
+               <h1>{movie.nameRu} ({movie.year})</h1>
+               <span style={{color: 'gray'}}>{movie.nameOriginal} {<AgeRating rating={movie.ratingAgeLimits}/>} </span>
+               <DataTable data={tableData}/>
+            </div>
+            <div className={style.information}>
+               <MovieRating rating={movie.ratingKinopoisk}/>
+               <span className={style.totalRatingCount}>{movie.ratingKinopoiskVoteCount.toLocaleString()} оценок</span>
+            </div>
          </div>
-         <div className={style.about}>
-            <h1>{movie.nameRu} ({movie.year})</h1>
-            <span>{movie.nameOriginal} {ratingAgeForRender}</span>
-            <DataTable data={tableData}/>
+         <div className={style.description}>
+            {movie.description}
          </div>
-         <div className={style.information}>
-            <span className={style.rating}>{movie.ratingKinopoisk}</span>
-            <span className={style.totalRatingCount}>{movie.ratingKinopoiskVoteCount} оценок</span>
-         </div>
-      </div>
+      </>
    )
 })
 
@@ -70,13 +72,13 @@ type DataTablePropsType = {
 
 const DataTable: React.FC<DataTablePropsType> = React.memo(({data}) => {
 
-   const DIRECTOR = data.staff.filter(p => p.professionKey === 'DIRECTOR')
-   const WRITER = data.staff.filter(p => p.professionKey === 'WRITER')
-   const PRODUCER = data.staff.filter(p => p.professionKey === 'PRODUCER')
-   const OPERATOR = data.staff.filter(p => p.professionKey === 'OPERATOR')
-   const COMPOSER = data.staff.filter(p => p.professionKey === 'COMPOSER')
-   const DESIGN = data.staff.filter(p => p.professionKey === 'DESIGN')
-   const EDITOR = data.staff.filter(p => p.professionKey === 'EDITOR')
+   const DIRECTOR = data.staff.filter(p => p.professionKey === 'DIRECTOR'),
+      WRITER = data.staff.filter(p => p.professionKey === 'WRITER'),
+      PRODUCER = data.staff.filter(p => p.professionKey === 'PRODUCER'),
+      OPERATOR = data.staff.filter(p => p.professionKey === 'OPERATOR'),
+      COMPOSER = data.staff.filter(p => p.professionKey === 'COMPOSER'),
+      DESIGN = data.staff.filter(p => p.professionKey === 'DESIGN'),
+      EDITOR = data.staff.filter(p => p.professionKey === 'EDITOR')
 
    return (
       <div className={style.aboutTable}>
@@ -89,11 +91,11 @@ const DataTable: React.FC<DataTablePropsType> = React.memo(({data}) => {
             </tr>
             <tr>
                <td>Страна</td>
-               <td>{<ObjectListMappingAsString list={data.countries} value={'country'}/>}</td>
+               <td><ObjectListMappingAsString list={data.countries} value={'country'}/></td>
             </tr>
             <tr>
                <td>Жанр</td>
-               <td>{<ObjectListMappingAsString list={data.genres} value={'genre'}/>}</td>
+               <td><ObjectListMappingAsString list={data.genres} value={'genre'}/></td>
             </tr>
             <tr>
                <td>Слоган</td>
@@ -101,31 +103,31 @@ const DataTable: React.FC<DataTablePropsType> = React.memo(({data}) => {
             </tr>
             <tr>
                <td>Режиссер</td>
-               <td>{<ObjectListMappingAsString list={DIRECTOR} value={'nameRu'}/>}</td>
+               <td><ObjectListMappingAsString list={DIRECTOR} value={'nameRu'}/></td>
             </tr>
             <tr>
                <td>Сценарий</td>
-               <td>{<ObjectListMappingAsString list={WRITER} value={'nameRu'}/>}</td>
+               <td><ObjectListMappingAsString list={WRITER} value={'nameRu'}/></td>
             </tr>
             <tr>
                <td>Продюсер</td>
-               <td>{<ObjectListMappingAsString list={PRODUCER} value={'nameRu'}/>}</td>
+               <td><ObjectListMappingAsString list={PRODUCER} value={'nameRu'}/></td>
             </tr>
             <tr>
                <td>Оператор</td>
-               <td>{<ObjectListMappingAsString list={OPERATOR} value={'nameRu'}/>}</td>
+               <td><ObjectListMappingAsString list={OPERATOR} value={'nameRu'}/></td>
             </tr>
             <tr>
                <td>Композитор</td>
-               <td>{<ObjectListMappingAsString list={COMPOSER} value={'nameRu'}/>}</td>
+               <td><ObjectListMappingAsString list={COMPOSER} value={'nameRu'}/></td>
             </tr>
             <tr>
                <td>Художник</td>
-               <td>{<ObjectListMappingAsString list={DESIGN} value={'nameRu'}/>}</td>
+               <td><ObjectListMappingAsString list={DESIGN} value={'nameRu'}/></td>
             </tr>
             <tr>
                <td>Монтаж</td>
-               <td>{<ObjectListMappingAsString list={EDITOR} value={'nameRu'}/>}</td>
+               <td><ObjectListMappingAsString list={EDITOR} value={'nameRu'}/></td>
             </tr>
             </tbody>
          </table>
@@ -133,7 +135,9 @@ const DataTable: React.FC<DataTablePropsType> = React.memo(({data}) => {
    )
 })
 
-const ObjectListMappingAsString: React.FC<{list: any, value: string}> = ({list, value}) => {
+const ObjectListMappingAsString: React.FC<{ list: any, value: string }> = ({list, value}) => {
    const text = list.map((c: any) => c[value]).join(', ')
    return <CollapseText text={text} maxLength={30}/>
 }
+
+

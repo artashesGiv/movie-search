@@ -1,8 +1,9 @@
 import React from 'react'
 import {movie} from '../../types/types'
-import style from './Movies.module.scss'
-import {CollapseText} from '../common/СutText/CollapseText'
+import style from './MoviesList.module.scss'
 import {Link} from 'react-router-dom'
+import {MovieRating} from '../common/MovieRating/MovieRating'
+import {CollapseText} from '../common/СutText/CollapseText'
 
 type MoviesListPropsType = {
    movies: movie[]
@@ -28,11 +29,12 @@ const MovieCard: React.FC<{ movie: movie }> = React.memo(({movie}) => {
    const {
       posterUrlPreview,
       nameEn,
-      description,
       nameRu,
       filmLength,
       year,
-      filmId
+      description,
+      filmId,
+      rating,
    } = movie
 
    return (
@@ -44,8 +46,11 @@ const MovieCard: React.FC<{ movie: movie }> = React.memo(({movie}) => {
                   <h3 className={style.name}>{nameRu}</h3>
                   <span className={style.year}>{year}</span>
                </div>
-               <span className={style.other}>{nameEn}, {filmLength}</span>
-               <CollapseText className={style.descriptionText} text={description}/>
+               {window.outerWidth > 1000 && <CollapseText text={description} maxLength={200}/>}
+               <div className={style.other}>
+                  <MovieRating rating={+rating} type={'small'}/>
+                  <span>{nameEn && nameEn + ','} {filmLength}</span>
+               </div>
             </div>
          </div>
       </Link>

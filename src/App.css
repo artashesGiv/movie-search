@@ -5,3 +5,28 @@
     padding: 50px 25px;
     min-height: 100vh;
 }
+
+@media (max-width: 1200px) {
+
+    .container {
+        width: 80%;
+    }
+
+}
+
+@media (max-width: 900px) {
+
+    .container {
+        width: 90%;
+        padding: 25px 25px;
+    }
+
+}
+
+@media (max-width: 600px) {
+
+    .container {
+        width: 100%;
+    }
+
+}

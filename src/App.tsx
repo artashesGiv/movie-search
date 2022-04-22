@@ -2,7 +2,7 @@ import React from 'react'
 import './App.css'
 import {SearchPage} from './components/SearchPage/SearchPage'
 import {Navigate, Route, Routes} from 'react-router-dom'
-import {MoviePage} from './components/ItemPages/MoviePage'
+import {MoviePage} from './components/ItemPage/MoviePage'
 
 
 export const App: React.FC = () => {

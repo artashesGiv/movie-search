@@ -1,8 +1,8 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit'
-import {responseDataMovieSearchByKeyword} from '../../../types/types'
+import {movieSearchDataResponseById} from '../../../types/types'
 import {fetchMovies} from './actionCreatorsThunks'
 
-type initialStateType = responseDataMovieSearchByKeyword & {
+type initialStateType = movieSearchDataResponseById & {
    pageSize: number
    currentPage: number
    isLoading: boolean
@@ -30,7 +30,7 @@ const searchSlice = createSlice({
       },
    },
    extraReducers: {
-      [fetchMovies.fulfilled.type]: (state, action: PayloadAction<responseDataMovieSearchByKeyword>) => {
+      [fetchMovies.fulfilled.type]: (state, action: PayloadAction<movieSearchDataResponseById>) => {
          state.error = ''
          state.films = action.payload.films
          state.keyword = action.payload.keyword

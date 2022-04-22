@@ -8,8 +8,8 @@
 
 .movieCard {
    display: flex;
-   margin-top: 25px;
-   padding: 20px;
+   gap: 20px;
+   padding: 10px;
    height: max-content;
    border-bottom: 1px solid $main-color;
 
@@ -19,14 +19,16 @@
    }
 
    img {
-      width: 150px;
+      width: 90px;
+      height: 133px;
       border: 2px solid gray;
    }
 
    .description {
       display: flex;
+      gap: 20px;
       flex-direction: column;
-      justify-content: space-around;
+      justify-content: space-between;
       padding-left: 30px;
 
       .year {
@@ -35,13 +37,33 @@
       }
 
       .other {
+         display: flex;
+         gap: 10px;
          color: gray;
       }
 
       .descriptionText {
          font-size: 15px;
       }
+   }
+}
 
+@media (max-width: 900px) {
+   .movieList {
+      margin-top: 20px;
+      padding-left: 10px;
+      font-size: 12px;
+   }
 
+   .movieCard {
+
+      img {
+         width: 60px;
+         height: auto;
+      }
+
+      .description {
+         padding-left: 10px;
+      }
    }
 }

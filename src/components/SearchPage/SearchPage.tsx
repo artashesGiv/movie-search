@@ -1,6 +1,6 @@
 import React from 'react'
 import {SearchForm} from '../SearchForm/SearchForm'
-import {MoviesList} from '../Movies/Movies'
+import {MoviesList} from '../Movies/MoviesList'
 import {useAppDispatch, useAppSelector} from '../../hooks/redux'
 import {fetchMovies} from '../../store/reducers/search/actionCreatorsThunks'
 import {Preloader} from '../common/Preloader/Preloader'

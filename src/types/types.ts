@@ -1,4 +1,4 @@
-export type responseDataMovieSearchByKeyword = {
+export type movieSearchDataResponseById = {
    films: movie[]
    keyword: string
    pagesCount: number
@@ -26,7 +26,7 @@ export type movie = {
 }
 
 
-export type responseDataMovieByID = {
+export type movieDataResponseById = {
    completed: false
    countries: {
       country: string
@@ -77,6 +77,11 @@ export type responseDataMovieByID = {
    year: number
 }
 
+export type responseDataMovieById<T> = {
+   items: T[]
+   total: number
+}
+
 export type person = {
    description: string
    nameEn: string
@@ -85,4 +90,19 @@ export type person = {
    professionKey: string
    professionText: string
    staffId: number
+}
+
+export type video = {
+   name: string
+   site: string
+   url: string
+}
+
+export type distribution = {
+   companies: { name: string }[]
+   country: { country: string }[]
+   date: string
+   reRelease: boolean
+   subType: string
+   type: string
 }

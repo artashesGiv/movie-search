@@ -1,8 +1,13 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit'
-import {person, responseDataMovieByID} from '../../../types/types'
+import {distribution, movieDataResponseById, person, video} from '../../../types/types'
 import {fetchMovieByID} from './actionCreatorsThunks'
 
-type responseDataType = { movie: responseDataMovieByID, staff: person[] }
+type responseDataType = {
+   movie: movieDataResponseById
+   staff: person[]
+   video: video[]
+   distribution: distribution[]
+}
 
 type initialStateType = responseDataType & {
    isLoading: boolean
@@ -57,7 +62,9 @@ const initialState: initialStateType = {
       year: 0,
    },
    staff: [],
-   isLoading: false,
+   video: [],
+   distribution: [],
+   isLoading: true,
    error: '',
 }
 
@@ -69,6 +76,9 @@ const movieViewSlice = createSlice({
       [fetchMovieByID.fulfilled.type]: (state, action: PayloadAction<responseDataType>) => {
          state.movie = action.payload.movie
          state.staff = action.payload.staff
+         state.video = action.payload.video
+         state.distribution = action.payload.distribution
+
          state.isLoading = false
       },
       [fetchMovieByID.pending.type]: (state) => {

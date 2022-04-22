@@ -2,8 +2,7 @@
 
 .form {
    display: flex;
-   //margin-top: 50px;
-   margin-bottom: 50px;
+   gap: 10px;
    height: 70px;
    width: 100%;
 
@@ -21,14 +20,13 @@
    }
 
    button {
-      width: 150px;
+      width: max(10%, 55px);
       border: none;
       background-color: $main-color;
       border-radius: 5px;
       cursor: pointer;
-      font-size: 18px;
+      font-size: 15px;
       color: white;
-      margin-left: 25px;
       height: 35px;
    }
 }
